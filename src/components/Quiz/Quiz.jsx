@@ -5,19 +5,20 @@ import {
   CardHeader,
   Container,
   Heading,
-  List,
-  ListItem,
   SimpleGrid,
   VStack,
+  Progress,
   Text,
-  Flex,
   Button,
   theme,
   Box,
+  background,
 } from "@chakra-ui/react";
 import React, { useRef } from "react";
 import { data } from "../../assets/data.js";
 import { useState } from "react";
+import Lottie from "react-lottie";
+import animationData from "../../lotties/Animation - 1716981978695.json";
 
 export default function () {
   const [index, setIndex] = useState(0);
@@ -65,39 +66,89 @@ export default function () {
       option_array.map((option) => {
         option.current.classList.remove("wrong");
         option.current.classList.remove("correct");
-        // option.current.style.borderColor = "gray";
-        option.current.style.background = "transparent";
-        option.current.style.borderColor = theme.colors.red[50];
+        option.current.style.background = "white";
+        option.current.style.borderColor = theme.colors.blue[100];
         return null;
       });
     }
   };
 
+  function calculateProgress() {
+    return (index / data.length) * 100;
+  }
+
   const ItemStyle = {
     border: "2px",
-    borderColor: "red.50",
+    borderColor: "blue.100",
     p: "7",
     borderRadius: "10px",
     cursor: "pointer",
+    textAlign: "center",
+    background: "white",
+  };
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    renderedSetting: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
   };
   return (
-    <VStack align="stretch" spacing={4} mt="40px">
+    <VStack align="stretch" spacing={4} mt="20px">
       <Heading as="h1" fontSize="3xl" textAlign="center">
         quiz app
       </Heading>
-      <Card mt="20px">
+      <Card
+        mt="20px"
+        color="blue.500"
+        position="relative"
+        _before={{
+          content: '""',
+          bgImage: "url('./imgs/alternating-arrowhead.svg')",
+          width: "100%",
+          height: "100%",
+          top: 0,
+          position: "absolute",
+          bottom: 0,
+          opacity: "0.5",
+          zIndex: 0,
+          right: 0,
+          left: 0,
+        }}
+      >
         {result ? (
           <CardBody>
-            you scored {score} out of {data.length}
+            <VStack zIndex="1" pb="30px">
+              <Lottie options={defaultOptions} height="300px" width="300px" />
+              <Text fontWeight="bold" fontSize="3xl" zIndex="1">
+                you scored {score} out of {data.length}
+              </Text>
+            </VStack>
           </CardBody>
         ) : (
           <>
             <CardHeader>
-              <Heading as="h2" fontSize="2xl">
-                {index + 1}. {question.question}
-              </Heading>
+              <Box
+                sx={{ ...ItemStyle, padding: "50px", overflow: "hidden" }}
+                position="relative"
+              >
+                <Progress
+                  colorScheme="blue"
+                  size="xs"
+                  value={calculateProgress()}
+                  position="absolute"
+                  right="0"
+                  left="0"
+                  top="0"
+                />
+                <Heading as="h2" fontSize="2xl">
+                  {question.question}
+                </Heading>
+              </Box>
             </CardHeader>
-            <CardBody>
+            <CardBody zIndex="1">
               <SimpleGrid spacing={5} columns={{ base: 1, lg: 2 }}>
                 <Box
                   sx={ItemStyle}
@@ -129,11 +180,11 @@ export default function () {
                 </Box>
               </SimpleGrid>
             </CardBody>
-            <CardFooter justifyContent="center">
+            <CardFooter justifyContent="center" zIndex="1">
               <VStack>
                 <Button
                   onClick={next}
-                  colorScheme="red"
+                  colorScheme="blue"
                   p="25px 50px"
                   mb="10px"
                   isDisabled={!lock}

@@ -15,8 +15,10 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "framer-motion": "^11.2.6",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-lottie": "^1.2.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
