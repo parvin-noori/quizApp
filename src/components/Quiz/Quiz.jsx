@@ -73,6 +73,14 @@ export default function () {
     }
   };
 
+  const reset=()=>{
+    setIndex(0)
+    setQuestion(data[0])
+    setLock(false)
+    setScore(0)
+    setResult(false)
+  }
+
   function calculateProgress() {
     return (index / data.length) * 100;
   }
@@ -122,9 +130,12 @@ export default function () {
           <CardBody>
             <VStack zIndex="1" pb="30px">
               <Lottie options={defaultOptions} height="300px" width="300px" />
-              <Text fontWeight="bold" fontSize="3xl" zIndex="1">
+              <Text fontWeight="bold" fontSize="3xl" zIndex="1" mb="10px">
                 you scored {score} out of {data.length}
               </Text>
+              <Button colorScheme="blue" p="25px 50px"  onClick={reset}>
+                reset
+              </Button>
             </VStack>
           </CardBody>
         ) : (
