@@ -14,7 +14,7 @@ import {
   Box,
   background,
 } from "@chakra-ui/react";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { data } from "../../assets/data.js";
 import { useState } from "react";
 import Lottie from "react-lottie";
@@ -55,14 +55,17 @@ export default function () {
   };
 
   const next = () => {
+   
     if (lock === true) {
       if (index === data.length - 1) {
         setResult(true);
         return 0;
       }
-      setIndex(index + 1);
-      setQuestion(data[index]);
+      const newIndex = index + 1;
+      setIndex(newIndex);
+      setQuestion(data[newIndex]);
       setLock(false);
+
       option_array.map((option) => {
         option.current.classList.remove("wrong");
         option.current.classList.remove("correct");
@@ -73,13 +76,16 @@ export default function () {
     }
   };
 
-  const reset=()=>{
-    setIndex(0)
-    setQuestion(data[0])
-    setLock(false)
-    setScore(0)
-    setResult(false)
-  }
+  // useEffect(() => {
+  //   console.log(index);
+  // }, [index]);
+  const reset = () => {
+    setIndex(0);
+    setQuestion(data[0]);
+    setLock(false);
+    setScore(0);
+    setResult(false);
+  };
 
   function calculateProgress() {
     return (index / data.length) * 100;
@@ -96,7 +102,7 @@ export default function () {
   };
 
   const defaultOptions = {
-    loop: true,
+    loop: false,
     autoplay: true,
     animationData: animationData,
     renderedSetting: {
@@ -107,6 +113,7 @@ export default function () {
     <VStack align="stretch" spacing={4} mt="20px">
       <Heading as="h1" fontSize="3xl" textAlign="center">
         quiz app
+        {index}
       </Heading>
       <Card
         mt="20px"
@@ -133,7 +140,7 @@ export default function () {
               <Text fontWeight="bold" fontSize="3xl" zIndex="1" mb="10px">
                 you scored {score} out of {data.length}
               </Text>
-              <Button colorScheme="blue" p="25px 50px"  onClick={reset}>
+              <Button colorScheme="blue" p="25px 50px" onClick={reset}>
                 reset
               </Button>
             </VStack>
