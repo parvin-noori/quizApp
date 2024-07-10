@@ -1,8 +1,15 @@
-# React + Vite
+# Quiz App using React and Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a quiz application developed using React and Vite. It serves as a practice exercise for frontend development skills.
+Features:
 
-Currently, two official plugins are available:
+    React: Utilized for building the user interface components.
+    Vite: Used as the build tool to facilitate fast development and optimized builds.
+    Chakra UI: Implemented for styling components and ensuring a consistent design system.
+    Lottie Files: Animated assets are integrated using Lottie for engaging visual elements.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Check out the live demo [here](https://parvin-noori.github.io/quizApp/)
+
+![quizApp](https://github.com/parvin-noori/quizApp/blob/master/public/imgs/screenShot/smartmockups_lyfs9h25.jpg)
+
+    
