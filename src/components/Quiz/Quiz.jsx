@@ -113,7 +113,7 @@ export default function () {
     <VStack align="stretch" spacing={4} mt="20px">
       <Heading as="h1" fontSize="3xl" textAlign="center">
         quiz app
-        {index}
+        {/* {index} */}
       </Heading>
       <Card
         mt="20px"
